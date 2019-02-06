@@ -1,30 +1,93 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 import Item from '../item/item';
-import { addItemBlock, addItemToBlock } from "../../redux/actions/index";
+import { addItemBlock, addItemToBlock, addItemSet } from "../../redux/actions/index";
+import { Droppable } from 'react-beautiful-dnd';
 
 const mapStateToProps = state => {
-  return { itemList: state.itemList, itemBlocks: state.itemBlocks };
+  return { itemList: state.itemList, itemBlocks: state.itemBlocks, itemSets: state.itemSets };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     addItemBlock: itemBlock => dispatch(addItemBlock(itemBlock)),
     addItemToBlock: (item, blockID) => dispatch(addItemToBlock(item, blockID)),
+    addItemSet: itemSet => dispatch(addItemSet(itemSet)),
   };
+}
+
+class InnerItemList extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    console.log('rerender')
+
+    if (this.props.itemList === nextProps.itemList) {
+      return false;
+    }
+    return true;
+  }
+
+  render() {
+    const { itemList, addItemToBlock } = this.props;
+    return itemList.map((item, i) => {
+    
+      if (item[1].maps["10"] !== false || item[1].maps["11"] !== false && item[1].instore !== false) {
+        return <Item 
+        key={item[0]} 
+        itemID={item[0]}
+        name={item[1].name}
+        blockID={ null }
+        dragID={`${item[0]}`}
+        img={`http://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/${item[0]}.png`}
+        addItemToBlock={ addItemToBlock }
+        index={i}
+      />
+      }
+    })
+    
+  }
 }
 
 
 
 class ConnectedItemArea extends Component {
-  
-  
-  addItemBlock = () => {
-    const { itemBlocks, addItemBlock} = this.props;
+  //Holds all the Items
+
+  addItemSet = () => {
+    const { itemSets, addItemSet} = this.props;
     
-    const type = `Item Block ${itemBlocks.length + 1}`;
+    const title = `Custom Item Set ${itemSets.length + 1}`;
+    const setID = itemSets.length;
+    const type = "custom";
+    const map = "any";
+    const mode = "any";
+    const blocks = [
+      {
+        type: "Starting Items",
+        items: [],
+      }, 
+      {
+        type: "Early Items",
+        items: [],
+      }, 
+      {
+        type: "Essential Items",
+        items: [],
+      }, 
+      {
+        type: "Standard Items",
+        items: [],
+      }, 
+      {
+        type: "Situational Items",
+        items: [],
+      }, 
+      {
+        type: "Consumables",
+        items: [],
+      }]
     
-    addItemBlock({type, items: []});
+    addItemSet({title, type, map, mode, blocks, setID });
   }
 
   addItemToBlock = (itemID) => {
@@ -47,22 +110,23 @@ class ConnectedItemArea extends Component {
     return (
       
       <div>
-        { 
-          itemList.map((item, key) => {
-
-            if (item[1].maps["10"] !== false || item[1].maps["11"] !== false && item[1].instore !== false) {
-              return <Item 
-              key={item[0]} 
-              itemID={item[0]}
-              name={item[1].name}
-              img={`http://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/${item[0]}.png`}
-              addItemToBlock={this.addItemToBlock}
-            />
-            }
-          })
-          
-        }
-        <button type="submit" onClick={this.addItemBlock}>Add a new block</button>
+        <Droppable droppableId={`item-area`} isDropDisabled={true} type="item-block">
+          {(provided, snapshot) => (
+            <div
+              ref={ provided.innerRef }
+              style={{ backgroundColor: snapshot.isDraggingOver ? 'blue' : 'grey' }}
+              {...provided.droppableProps}
+              >
+              <InnerItemList 
+              itemList={itemList}
+              addItemToBlock={addItemToBlock}
+              />
+            { provided.placeholder ? (this.renderImagePlaceholder()) : null }
+          </div>
+          )}
+        </Droppable>
+        <button type="submit" onClick={this.addItemSet}> Add a new set</button>
+        
       </div>
     )
   }

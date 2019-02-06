@@ -1,22 +1,40 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Draggable } from 'react-beautiful-dnd';
+import { deleteItemFromBlock } from '../../redux/actions/index';
 import './item.css';
 
-export default class Item extends Component {
-  
-  state = {
-    block: false,
+function mapDispatchToProps(dispatch) {
+  return {
+    deleteItemFromBlock: (item, blockID) => dispatch(deleteItemFromBlock(item, blockID)),
   }
+}
+
+
+class ConnectedItem extends Component {
   
   render() {
 
-    const { img, name, itemID, addItemToBlock} = this.props;
+    const { img, name, itemID, index, blockID, blockItems, dragID, deleteItemFromBlock} = this.props;
     
 
-
     return (
-      <div data-id={itemID} className="item" >
-        <img src={img} alt={name + " picture"} onClick={() => addItemToBlock(itemID)}/>
-      </div>
+      <Draggable draggableId={dragID} index={index} type="item-block">
+        {(provided, snapshot) => (
+          <div data-id={itemID} className="item" 
+          >
+            <img src={img} alt={name + " picture"}   ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}/>
+            {blockID !== null ? <button type="submit" onClick={() => deleteItemFromBlock(index, blockID)}></button> : ''}
+          </div>
+        )}
+        
+      </Draggable>
     )
   }
 }
+
+const Item = connect(null, mapDispatchToProps)(ConnectedItem);
+
+export default Item;

@@ -1,7 +1,21 @@
 .item {
-  display: inline;
+  display: inline-block;
+  position: relative;
+  
 
   img {
-    width: 50px;
+    position: relative;
+    z-index: 1;
+    width: 55px;
   }
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    height: 15px; 
+    width: 15px;
+  }
+
 }
