@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Itemsetbuilder from './pages/itemsetbuilder';
-import './css/reset.css';
+import './css/main.css';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { addItemBlock, addItemToBlock, addItemSet, deleteItemFromBlock } from "./redux/actions/index";
 import { connect } from "react-redux";
+import LogoBar from './components/logobar/logobar';
 
 const mapStateToProps = state => {
   return { itemList: state.itemList, itemBlocks: state.itemBlocks, itemSets: state.itemSets };
@@ -71,8 +72,8 @@ class ConnectedApp extends Component {
     return (
       <DragDropContext
       onDragEnd={this.onDragEnd}
-      
       >
+        <LogoBar />
         <Itemsetbuilder />
       </DragDropContext>
       

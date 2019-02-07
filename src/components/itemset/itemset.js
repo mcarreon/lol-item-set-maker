@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import ItemBlock from '../itemblock/itemblock';
 import { addItemBlock } from "../../redux/actions/index";
-import './itemset.css'
+
 
 const mapStateToProps = state => {
   return { itemList: state.itemList, itemListObj: state.itemListObj, itemSets: state.itemSets, curItemSet: state.curItemSet };

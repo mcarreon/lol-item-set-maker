@@ -1,0 +1,19 @@
+#root {
+  min-height: 100vh;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 0.4fr 1.8fr .8fr;
+  grid-template-rows: 80vh 15vh;
+  grid-template-areas: "sidebar item-area set-area" "sidebar set-bank set-area";
+  max-height: 100%;
+}
+
+.sidebar { grid-area: sidebar; }
+
+.set-area { grid-area: set-area; }
+
+.item-area { grid-area: item-area; }
+
+.set-bank { grid-area: set-bank; }

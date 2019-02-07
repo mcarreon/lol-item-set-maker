@@ -53,43 +53,6 @@ class InnerItemList extends Component {
 class ConnectedItemArea extends Component {
   //Holds all the Items
 
-  addItemSet = () => {
-    const { itemSets, addItemSet} = this.props;
-    
-    const title = `Custom Item Set ${itemSets.length + 1}`;
-    const setID = itemSets.length;
-    const type = "custom";
-    const map = "any";
-    const mode = "any";
-    const blocks = [
-      {
-        type: "Starting Items",
-        items: [],
-      }, 
-      {
-        type: "Early Items",
-        items: [],
-      }, 
-      {
-        type: "Essential Items",
-        items: [],
-      }, 
-      {
-        type: "Standard Items",
-        items: [],
-      }, 
-      {
-        type: "Situational Items",
-        items: [],
-      }, 
-      {
-        type: "Consumables",
-        items: [],
-      }]
-    
-    addItemSet({title, type, map, mode, blocks, setID });
-  }
-
   addItemToBlock = (itemID) => {
     const { addItemToBlock } = this.props;
     
@@ -98,9 +61,6 @@ class ConnectedItemArea extends Component {
     
     addItemToBlock(itemID, blockID);
   }
-
-
-
 
   render() {
 
@@ -125,8 +85,6 @@ class ConnectedItemArea extends Component {
           </div>
           )}
         </Droppable>
-        <button type="submit" onClick={this.addItemSet}> Add a new set</button>
-        
       </div>
     )
   }

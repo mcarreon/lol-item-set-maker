@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Draggable } from 'react-beautiful-dnd';
 import { deleteItemFromBlock } from '../../redux/actions/index';
-import './item.css';
+
 
 function mapDispatchToProps(dispatch) {
   return {

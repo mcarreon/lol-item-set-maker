@@ -1,0 +1,67 @@
+@import '../constants/constants';
+
+
+//logobar.js START
+.logo-bar {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: color(primary);
+  color: color(secondary);
+
+  h1, ul { 
+    margin: 0 50px;
+  }
+
+  ul {
+    li {
+      display: inline;
+      margin-left: 20px;
+    }
+  }
+}
+//logobar.js END
+
+
+
+// item.js START
+.item {
+  display: inline-block;
+  position: relative;
+  
+
+  img {
+    position: relative;
+    z-index: 1;
+    width: 55px;
+  }
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    height: 15px; 
+    width: 15px;
+  }
+
+}
+// item.js END
+
+
+
+// itemSet.js START
+.item-block {
+  max-height: 125px;
+  border: 1px solid grey;
+  margin-bottom: 25px;
+  max-width: 500px;
+}
+
+.item-block-droppable {
+  margin: 10px 10px;
+  height: 75px;
+}
+// itemSet.js END
