@@ -3,7 +3,7 @@ import ItemArea from '../components/itemarea/itemarea';
 import { connect } from 'react-redux';
 import ItemSet from '../components/itemset/itemset';
 import { addItemSet, saveItemSet } from '../redux/actions';
-import ItemBank from '../components/itembank/itembank';
+import SetBank from '../components/setbank/setbank';
 
 function mapDispatchToProps (dispatch) {
   return {
@@ -20,13 +20,13 @@ const mapStateToProps = state => {
 
 class ConnectedItemsetbuilder extends Component {
 
-  addItemSet = () => {
+  addItemSet = (champName) => {
     const { itemSets, addItemSet, saveItemSet} = this.props;
     //console.log('test');
 
 
     const title = `Custom Item Set ${itemSets.length + 1}`;
-    const name = "Lux";
+    const name = champName;
     const setID = itemSets.length;
     const type = "custom";
     const map = "any";
@@ -88,7 +88,7 @@ class ConnectedItemsetbuilder extends Component {
           }
         </div>
         <div className="set-bank">
-          <ItemBank 
+          <SetBank 
             addItemSet={this.addItemSet}
             itemSets={itemSets}
             champNames={champNames}

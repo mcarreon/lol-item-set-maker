@@ -1,5 +1,10 @@
 @import '../constants/constants';
 
+.visible { display: inline!important }
+
+.invisible { display: none!important }
+
+
 
 //logobar.js START
 .logo-bar {
@@ -74,6 +79,7 @@
   align-items: center;
   justify-content: space-between;
   margin: 0 25px;
+  position: relative;
   
   .item-sets {
     width: 90%;
@@ -86,7 +92,13 @@
       position: relative;
 
       img {
-        width: 50px;
+        width: 48px;
+        border-radius: 50px;
+        border: 2px solid rgb(140, 171, 177);
+      }
+
+      .editing {
+        border: 2px solid color(secondary);
       }
       p {
         
@@ -101,8 +113,57 @@
     
   }
   
-  .add-set{
-
+  .add-set {
+    position: relative;
   }
+  
 }
+
 // itembank.js END
+
+// champselect START
+.champ-select-container {
+  position: absolute;
+  top: -385px;
+  left: -200px;
+  height: 350px;
+  width: 500px;
+  border: 5px solid black;
+  z-index: 5;
+  background-color: white;
+  display: grid;
+  grid-template-rows: 20% 80%;
+
+  .champ-select-nav {
+    height: 70px;
+  }
+  
+  .champ-select {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    overflow-y: scroll;
+    height: 278px;
+    border-top: 2px solid black;
+    div {
+      display: flex;
+      align-items: center;
+      margin: 10px 10px;
+
+      img {
+        border-radius: 50px;
+        width: 25px;
+      }
+
+      p {
+        display: inline;
+        margin-left: 5px;
+        font-size: 14px;
+        vertical-align: middle;
+      }
+    }
+  }
+
+}
+
+// champselect END
