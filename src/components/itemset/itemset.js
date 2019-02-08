@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import ItemBlock from '../itemblock/itemblock';
-import { addItemBlock } from "../../redux/actions/index";
+import { addItemBlock, saveItemSet } from "../../redux/actions/index";
 
 
 const mapStateToProps = state => {
@@ -11,12 +11,16 @@ const mapStateToProps = state => {
 function mapDispatchToProps(dispatch) {
   return {
     addItemBlock: (itemBlock, setID) => dispatch(addItemBlock(itemBlock, setID)),
+    saveItemSet: () => dispatch(saveItemSet()),
   }
 }
 
 
 class ConnectedItemSet extends Component {
   
+
+  
+
   //needs to know champ
   //needs to know map
   //needs to have array of item blocks
@@ -29,14 +33,23 @@ class ConnectedItemSet extends Component {
     
     addItemBlock({type, items: []}, setID);
   }
+
+  handleSetClose = () => {
+    this.props.saveItemSet();
+  }
   
   render() {
 
     const { setID, itemListObj, title, blocks } = this.props;
+    
+
 
     return (
-      <div data-set-id={setID}>
-        <div>{title}</div>
+      <div data-set-id={setID} className={`item-set-container`}>
+        <div>
+          <h2>{title}</h2>
+          <button type="button" onClick={() => this.handleSetClose()}></button>
+        </div>
         {
           blocks.map((block, i) => {
             

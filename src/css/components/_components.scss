@@ -58,6 +58,19 @@
 
 
 // itemSet.js START
+.item-set-container {
+
+  
+
+
+
+}
+
+
+
+// itemSet.js END
+
+// itemblock START
 .item-block {
   max-height: 125px;
   border: 1px solid grey;
@@ -69,7 +82,8 @@
   margin: 10px 10px;
   height: 75px;
 }
-// itemSet.js END
+// itemblock END
+
 
 
 
@@ -131,8 +145,18 @@
   border: 5px solid black;
   z-index: 5;
   background-color: white;
-  display: grid;
-  grid-template-rows: 20% 80%;
+  
+
+  button {
+    position: absolute;
+    right: 0;
+    border-radius: 0;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    border-top: none;
+    border-right: none;
+    background-color: red;
+  }
 
   .champ-select-nav {
     height: 70px;
@@ -145,6 +169,9 @@
     overflow-y: scroll;
     height: 278px;
     border-top: 2px solid black;
+
+    
+
     div {
       display: flex;
       align-items: center;

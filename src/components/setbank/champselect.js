@@ -13,10 +13,11 @@ export class ChampSelect extends Component {
   
   render() {
 
-    const { display, champNames, addItemSet } = this.props;
+    const { display, champNames, toggleVisible } = this.props;
 
     return (
       <div className={`champ-select-container ${display ? "visible" : "invisible"}`}>
+        <button type="button" onClick={toggleVisible}>x</button>
         <div className="champ-select-nav">test</div>
         <div className="champ-select">
         {

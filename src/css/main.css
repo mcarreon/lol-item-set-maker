@@ -214,10 +214,17 @@ table {
   border: 5px solid black;
   z-index: 5;
   background-color: white;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-rows: 20% 80%;
-      grid-template-rows: 20% 80%;
+}
+
+.champ-select-container button {
+  position: absolute;
+  right: 0;
+  border-radius: 0;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-top: none;
+  border-right: none;
+  background-color: red;
 }
 
 .champ-select-container .champ-select-nav {
