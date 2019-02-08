@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import ItemArea from '../components/itemarea/itemarea';
 import { connect } from 'react-redux';
 import ItemSet from '../components/itemset/itemset';
-import { addItemSet } from '../redux/actions';
+import { addItemSet, saveItemSet } from '../redux/actions';
 import ItemBank from '../components/itembank/itembank';
 
 function mapDispatchToProps (dispatch) {
   return {
     addItemSet: itemSet => dispatch(addItemSet(itemSet)),
+    saveItemSet: () => dispatch(saveItemSet()),
   }
 }
 
 const mapStateToProps = state => {
-  return { itemSets: state.itemSets, curItemSet: state.curItemSet};
+  return { itemSets: state.itemSets, curItemSet: state.curItemSet, champNames: state.champNames};
 }
 
 
@@ -20,9 +21,12 @@ const mapStateToProps = state => {
 class ConnectedItemsetbuilder extends Component {
 
   addItemSet = () => {
-    const { itemSets, addItemSet} = this.props;
-    
+    const { itemSets, addItemSet, saveItemSet} = this.props;
+    //console.log('test');
+
+
     const title = `Custom Item Set ${itemSets.length + 1}`;
+    const name = "Lux";
     const setID = itemSets.length;
     const type = "custom";
     const map = "any";
@@ -52,8 +56,10 @@ class ConnectedItemsetbuilder extends Component {
         type: "Consumables",
         items: [],
       }]
+
+    saveItemSet();
+    addItemSet({title, name, type, map, mode, blocks, setID });
     
-    addItemSet({title, type, map, mode, blocks, setID });
   }
 
 
@@ -61,7 +67,11 @@ class ConnectedItemsetbuilder extends Component {
 
   render() {
 
-    const { itemSets, curItemSet } = this.props;
+    const { itemSets, curItemSet, champNames } = this.props;
+
+    let curSetID = curItemSet === null ? -1 : curItemSet.setID;
+
+
 
     return (
       <div className="grid-container">
@@ -80,6 +90,9 @@ class ConnectedItemsetbuilder extends Component {
         <div className="set-bank">
           <ItemBank 
             addItemSet={this.addItemSet}
+            itemSets={itemSets}
+            champNames={champNames}
+            curItemSetID={curSetID}
           />
         </div>
       </div>

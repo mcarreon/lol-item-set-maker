@@ -65,3 +65,44 @@
   height: 75px;
 }
 // itemSet.js END
+
+
+
+// itembank.js START
+.item-bank {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 25px;
+  
+  .item-sets {
+    width: 90%;
+
+    div {
+      text-align: center;
+      display: inline-block;
+      margin-right: 10px;
+      
+      position: relative;
+
+      img {
+        width: 50px;
+      }
+      p {
+        
+        position: absolute;
+        bottom: -15px;
+        left: 0;
+        right: 0;
+        font-size: 14px;
+        
+      }
+    }
+    
+  }
+  
+  .add-set{
+
+  }
+}
+// itembank.js END
