@@ -52,6 +52,10 @@ table {
   border-spacing: 0;
 }
 
+button:focus {
+  outline: 0;
+}
+
 #root {
   min-height: 100vh;
 }
@@ -59,8 +63,8 @@ table {
 .grid-container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 0.4fr 1.8fr .8fr;
-      grid-template-columns: 0.4fr 1.8fr .8fr;
+  -ms-grid-columns: 0.4fr 1.6fr 1fr;
+      grid-template-columns: 0.4fr 1.6fr 1fr;
   -ms-grid-rows: 80vh 15vh;
       grid-template-rows: 80vh 15vh;
       grid-template-areas: "sidebar item-area set-area" "sidebar set-bank set-area";
@@ -99,6 +103,21 @@ table {
 
 .invisible {
   display: none !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #C9AA71;
+  border-radius: 10px;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #bb944c;
 }
 
 .logo-bar {
@@ -146,11 +165,51 @@ table {
   width: 15px;
 }
 
+.item-set-container {
+  height: 100%;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.item-set-container div.item-set-nav {
+  position: relative;
+  height: 100px;
+}
+
+.item-set-container div.item-set-nav h2 {
+  display: inline-block;
+}
+
+.item-set-container div.item-set-nav button {
+  margin-left: 10px;
+}
+
+.item-set-container div.item-set-nav button.save {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-top: none;
+  border-right: none;
+  background-color: red;
+}
+
 .item-block {
   max-height: 125px;
   border: 1px solid grey;
   margin-bottom: 25px;
   max-width: 500px;
+}
+
+.item-block .block-options p {
+  display: inline;
+}
+
+.item-block .block-options button {
+  display: inline;
+  margin-left: 20px;
 }
 
 .item-block-droppable {
@@ -170,10 +229,11 @@ table {
           justify-content: space-between;
   margin: 0 25px;
   position: relative;
+  height: 100%;
 }
 
 .item-bank .item-sets {
-  width: 90%;
+  width: 80%;
 }
 
 .item-bank .item-sets div {
@@ -205,18 +265,31 @@ table {
   position: relative;
 }
 
-.champ-select-container {
-  position: absolute;
-  top: -385px;
-  left: -200px;
-  height: 350px;
-  width: 500px;
-  border: 5px solid black;
-  z-index: 5;
-  background-color: white;
+.add-set-options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-.champ-select-container button {
+.add-set-options button {
+  font-size: 10px;
+  margin-left: 10px;
+}
+
+.champ-select-container {
+  position: absolute;
+  top: -450px;
+  left: -300px;
+  height: 400px;
+  width: 550px;
+  border: 3px solid #886320;
+  border-radius: 5px;
+  z-index: 5;
+  background-color: #000b0d;
+  color: #a29e98;
+}
+
+.champ-select-container button.display {
   position: absolute;
   right: 0;
   border-radius: 0;
@@ -229,6 +302,82 @@ table {
 
 .champ-select-container .champ-select-nav {
   height: 70px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.champ-select-container .champ-select-nav .toggled {
+  opacity: 1;
+  border: 1px solid #886320;
+}
+
+.champ-select-container .champ-select-nav button {
+  height: 25px;
+  width: 25px;
+  margin: 0 0 0 15px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.champ-select-container .champ-select-nav i {
+  display: inline-block;
+  width: inherit;
+  height: inherit;
+  opacity: .5;
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
+  border: 1px solid transparent;
+}
+
+.champ-select-container .champ-select-nav i:hover {
+  opacity: 1;
+}
+
+.champ-select-container .champ-select-nav input {
+  margin-left: auto;
+  margin-right: 50px;
+}
+
+.champ-select-container .champ-select-nav .fighter {
+  background: url("../assets/icons/fighter.png") no-repeat top left;
+  background-size: 25px 25px;
+  background-color: inherit;
+}
+
+.champ-select-container .champ-select-nav .tank {
+  background: url("../assets/icons/tank.png") no-repeat top left;
+  background-size: 25px 25px;
+  background-color: inherit;
+}
+
+.champ-select-container .champ-select-nav .mage {
+  background: url("../assets/icons/mage.png") no-repeat top left;
+  background-size: 25px 25px;
+  background-color: inherit;
+}
+
+.champ-select-container .champ-select-nav .assassin {
+  background: url("../assets/icons/assassin.png") no-repeat top left;
+  background-size: 25px 25px;
+  background-color: inherit;
+}
+
+.champ-select-container .champ-select-nav .support {
+  background: url("../assets/icons/support.png") no-repeat top left;
+  background-size: 25px 25px;
+  background-color: inherit;
+}
+
+.champ-select-container .champ-select-nav .marksman {
+  background: url("../assets/icons/marksman.png") no-repeat top left;
+  background-size: 25px 25px;
+  background-color: inherit;
 }
 
 .champ-select-container .champ-select {
@@ -239,8 +388,13 @@ table {
   -ms-grid-rows: auto;
       grid-template-rows: auto;
   overflow-y: scroll;
-  height: 278px;
-  border-top: 2px solid black;
+  height: 328px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.champ-select-container .champ-select div:hover {
+  color: #C9AA71;
 }
 
 .champ-select-container .champ-select div {
@@ -251,17 +405,21 @@ table {
       -ms-flex-align: center;
           align-items: center;
   margin: 10px 10px;
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
 }
 
 .champ-select-container .champ-select div img {
   border-radius: 50px;
   width: 25px;
+  cursor: pointer;
 }
 
 .champ-select-container .champ-select div p {
   display: inline;
   margin-left: 5px;
-  font-size: 14px;
+  font-size: 12px;
   vertical-align: middle;
+  cursor: pointer;
 }
 /*# sourceMappingURL=main.css.map */

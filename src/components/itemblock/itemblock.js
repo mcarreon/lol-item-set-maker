@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Item from '../item/item';
 import { Droppable } from 'react-beautiful-dnd';
+import { deleteBlockFromSet } from '../../redux/actions';
 
 
 export default class Itemblock extends Component {
@@ -10,7 +11,7 @@ export default class Itemblock extends Component {
   
   render() {
 
-    const { itemListObj, blocks, blockID, setID } = this.props;
+    const { itemListObj, blocks, blockID, setID, deleteBlock } = this.props;
     let items = [];
     
     // If block already has items then display the items
@@ -23,7 +24,10 @@ export default class Itemblock extends Component {
 
     return (
       <div data-block-id={blockID} className="item-block">
-        <p>{this.props.type}</p>
+        <div className="block-options">
+          <p>{this.props.type}</p>
+          <button type="submit" onClick={() => deleteBlock(blockID)}>Delete Block</button>
+        </div>
         <Droppable droppableId={`${blockID}`} type="item-block" direction="horizontal" setID={setID}>
           {(provided, snapshot) => (
             <div

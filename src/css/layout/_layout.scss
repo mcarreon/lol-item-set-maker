@@ -4,7 +4,7 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: 0.4fr 1.8fr .8fr;
+  grid-template-columns: 0.4fr 1.6fr 1fr;
   grid-template-rows: 80vh 15vh;
   grid-template-areas: "sidebar item-area set-area" "sidebar set-bank set-area";
   max-height: 100%;

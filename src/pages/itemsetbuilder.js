@@ -2,18 +2,20 @@ import React, { Component } from 'react';
 import ItemArea from '../components/itemarea/itemarea';
 import { connect } from 'react-redux';
 import ItemSet from '../components/itemset/itemset';
-import { addItemSet, saveItemSet } from '../redux/actions';
+import { addItemSet, saveItemSet, switchItemSet, clearSets } from '../redux/actions';
 import SetBank from '../components/setbank/setbank';
 
 function mapDispatchToProps (dispatch) {
   return {
     addItemSet: itemSet => dispatch(addItemSet(itemSet)),
     saveItemSet: () => dispatch(saveItemSet()),
+    switchItemSet: setID => dispatch(switchItemSet(setID)),
+    clearSets: () => dispatch(clearSets()),
   }
 }
 
 const mapStateToProps = state => {
-  return { itemSets: state.itemSets, curItemSet: state.curItemSet, champNames: state.champNames};
+  return { itemSets: state.itemSets, curItemSet: state.curItemSet, champs: state.champs};
 }
 
 
@@ -62,12 +64,21 @@ class ConnectedItemsetbuilder extends Component {
     
   }
 
+  switchItemSet = (setID) => {
+    const { saveItemSet, switchItemSet } = this.props;
 
+    saveItemSet();
+    switchItemSet(setID);
+  }
+
+  clearSets = () => {
+    this.props.clearSets();
+  }
 
 
   render() {
 
-    const { itemSets, curItemSet, champNames } = this.props;
+    const { itemSets, curItemSet, champs } = this.props;
 
     let curSetID = curItemSet === null ? -1 : curItemSet.setID;
 
@@ -91,8 +102,10 @@ class ConnectedItemsetbuilder extends Component {
           <SetBank 
             addItemSet={this.addItemSet}
             itemSets={itemSets}
-            champNames={champNames}
+            champs={champs}
             curItemSetID={curSetID}
+            switchItemSet={this.switchItemSet}
+            clearSets={this.clearSets}
           />
         </div>
       </div>

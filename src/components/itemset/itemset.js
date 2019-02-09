@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import ItemBlock from '../itemblock/itemblock';
-import { addItemBlock, saveItemSet } from "../../redux/actions/index";
+import { addItemBlock, saveItemSet, clearBlocks, deleteBlockFromSet } from "../../redux/actions/index";
 
 
 const mapStateToProps = state => {
@@ -12,6 +12,8 @@ function mapDispatchToProps(dispatch) {
   return {
     addItemBlock: (itemBlock, setID) => dispatch(addItemBlock(itemBlock, setID)),
     saveItemSet: () => dispatch(saveItemSet()),
+    clearBlocks: () => dispatch(clearBlocks()),
+    deleteBlockFromSet: blockID => dispatch(deleteBlockFromSet(blockID)),
   }
 }
 
@@ -26,30 +28,32 @@ class ConnectedItemSet extends Component {
   //needs to have array of item blocks
   //need to create delete or update
   addItemBlock = (setID) => {
-    const { itemSets, addItemBlock} = this.props;
+    const { curItemSet, addItemBlock} = this.props;
     
-    const type = `Item Block ${itemSets[setID].blocks.length + 1}`;
+    const type = `Item Block ${curItemSet.blocks.length + 1}`;
     
     
     addItemBlock({type, items: []}, setID);
   }
 
-  handleSetClose = () => {
-    this.props.saveItemSet();
+  deleteBlockFromSet = (blockID) => {
+    this.props.deleteBlockFromSet(blockID);
   }
   
   render() {
 
-    const { setID, itemListObj, title, blocks } = this.props;
+    const { setID, itemListObj, title, blocks, saveItemSet, clearBlocks } = this.props;
     
 
 
     return (
       <div data-set-id={setID} className={`item-set-container`}>
-        <div>
+        <div className="item-set-nav">
           <h2>{title}</h2>
-          <button type="button" onClick={() => this.handleSetClose()}></button>
+          <button type="submit" onClick={() => clearBlocks()}>Clear Blocks</button>
+          <button type="button" className="save" onClick={() => saveItemSet()}>x</button>
         </div>
+        
         {
           blocks.map((block, i) => {
             
@@ -60,6 +64,7 @@ class ConnectedItemSet extends Component {
             itemListObj={itemListObj}
             blocks={blocks}
             setID={setID}
+            deleteBlock={this.deleteBlockFromSet}
             />
           })
         }
