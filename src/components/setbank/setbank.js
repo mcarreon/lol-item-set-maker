@@ -16,7 +16,6 @@ export default class setbank extends Component {
   }
   
   toggleVisible = () => {
-    console.log('a');
     this.setState({selecting: !this.state.selecting});
   }
 
@@ -34,13 +33,13 @@ export default class setbank extends Component {
           {
             itemSets.slice(0).reverse().map((set, i) => {
 
-              //console.log(set);
+              console.log(set);
               let imgSrc = `http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/${set.name}.png`
 
               return (
                 <div key={set.setID} onClick={() => switchItemSet(set.setID)}>
                   <img src={imgSrc} alt="set character img" className={ isEditing(curItemSetID, set.setID) ? "editing" : "" }/>
-                  <p>{isEditing(curItemSetID, set.setID) ? 'Editing' : ""}</p>
+                  <p></p>
                 </div>
               )
             })

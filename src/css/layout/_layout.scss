@@ -5,9 +5,10 @@
 .grid-container {
   display: grid;
   grid-template-columns: 0.4fr 1.6fr 1fr;
-  grid-template-rows: 80vh 15vh;
+  grid-template-rows: 85vh 10vh;
   grid-template-areas: "sidebar item-area set-area" "sidebar set-bank set-area";
   max-height: 100%;
+  background-image: linear-gradient(to bottom, #000e11, #011417, #03181c, #031c21, #002027);
 }
 
 .sidebar { grid-area: sidebar; }

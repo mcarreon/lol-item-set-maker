@@ -1,9 +1,43 @@
 $colors: (
-	primary: #02343E,
-	secondary: #C9AA71,
+	primary: #051e23,
+	secondary: rgb(209, 171, 100),
 	secondary-dark: #886320,
 );
+
+$fonts: (
+	regular: "BeaufortW01-Regular",
+	medium: "BeaufortMedium",
+	light: "BeaufortLight",
+	heavy: "BeaufortHeavy",
+);
+
 
 @function color($color) {
 	@return map-get($colors, $color);
 };
+
+@function font($font) {
+	@return map-get($fonts, $font);
+};
+
+body {
+
+	input[type="text"] {
+		background-color: #072a31;
+		border: 2px solid transparent;
+		border-radius: 10px;
+		padding-left: 30px;
+		transition: .5s ease-in-out;
+	}
+
+	input::placeholder {
+		color: color(secondary);
+		font-size: inherit;
+		font-family: font(medium), sans-serif;
+	}
+
+	input:focus {
+		border: 2px solid color(secondary-dark);
+		background-color: transparent;
+	}
+}

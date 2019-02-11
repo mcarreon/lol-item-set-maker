@@ -52,8 +52,51 @@ table {
   border-spacing: 0;
 }
 
-button:focus {
+button:focus, input:focus {
   outline: 0;
+}
+
+html {
+  font-family: font(medium), sans-serif;
+  color: color(secondary);
+}
+
+body input[type="text"] {
+  background-color: #072a31;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding-left: 30px;
+  -webkit-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+}
+
+body input::-webkit-input-placeholder {
+  color: #d1ab64;
+  font-size: inherit;
+  font-family: "BeaufortMedium", sans-serif;
+}
+
+body input:-ms-input-placeholder {
+  color: #d1ab64;
+  font-size: inherit;
+  font-family: "BeaufortMedium", sans-serif;
+}
+
+body input::-ms-input-placeholder {
+  color: #d1ab64;
+  font-size: inherit;
+  font-family: "BeaufortMedium", sans-serif;
+}
+
+body input::placeholder {
+  color: #d1ab64;
+  font-size: inherit;
+  font-family: "BeaufortMedium", sans-serif;
+}
+
+body input:focus {
+  border: 2px solid #886320;
+  background-color: transparent;
 }
 
 #root {
@@ -65,10 +108,12 @@ button:focus {
   display: grid;
   -ms-grid-columns: 0.4fr 1.6fr 1fr;
       grid-template-columns: 0.4fr 1.6fr 1fr;
-  -ms-grid-rows: 80vh 15vh;
-      grid-template-rows: 80vh 15vh;
+  -ms-grid-rows: 85vh 10vh;
+      grid-template-rows: 85vh 10vh;
       grid-template-areas: "sidebar item-area set-area" "sidebar set-bank set-area";
   max-height: 100%;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#000e11), color-stop(#011417), color-stop(#03181c), color-stop(#031c21), to(#002027));
+  background-image: linear-gradient(to bottom, #000e11, #011417, #03181c, #031c21, #002027);
 }
 
 .sidebar {
@@ -97,6 +142,44 @@ button:focus {
   grid-area: set-bank;
 }
 
+body input[type="text"] {
+  background-color: #072a31;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding-left: 30px;
+  -webkit-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+}
+
+body input::-webkit-input-placeholder {
+  color: #d1ab64;
+  font-size: inherit;
+  font-family: "BeaufortMedium", sans-serif;
+}
+
+body input:-ms-input-placeholder {
+  color: #d1ab64;
+  font-size: inherit;
+  font-family: "BeaufortMedium", sans-serif;
+}
+
+body input::-ms-input-placeholder {
+  color: #d1ab64;
+  font-size: inherit;
+  font-family: "BeaufortMedium", sans-serif;
+}
+
+body input::placeholder {
+  color: #d1ab64;
+  font-size: inherit;
+  font-family: "BeaufortMedium", sans-serif;
+}
+
+body input:focus {
+  border: 2px solid #886320;
+  background-color: transparent;
+}
+
 .visible {
   display: inline !important;
 }
@@ -110,14 +193,14 @@ button:focus {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #C9AA71;
+  background-color: #d1ab64;
   border-radius: 10px;
   -webkit-transition-duration: 1s;
           transition-duration: 1s;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #bb944c;
+  background-color: #c5963d;
 }
 
 .logo-bar {
@@ -132,8 +215,8 @@ button:focus {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background-color: #02343E;
-  color: #C9AA71;
+  background-color: #051e23;
+  color: #d1ab64;
 }
 
 .logo-bar h1, .logo-bar ul {
@@ -163,6 +246,114 @@ button:focus {
   z-index: 3;
   height: 15px;
   width: 15px;
+}
+
+.item-area {
+  color: #d1ab64;
+}
+
+.item-area .item-options h1 {
+  font-size: 25px;
+  margin-left: 10px;
+  margin-top: 15px;
+  font-family: "BeaufortHeavy", sans-serif;
+}
+
+.item-area .item-options input[type="text"] {
+  width: 91%;
+  height: 25px;
+  margin: 10px 10px 5px;
+}
+
+.item-area .item-options input::-webkit-input-placeholder {
+  color: #d1ab64;
+  font-size: inherit;
+}
+
+.item-area .item-options input:-ms-input-placeholder {
+  color: #d1ab64;
+  font-size: inherit;
+}
+
+.item-area .item-options input::-ms-input-placeholder {
+  color: #d1ab64;
+  font-size: inherit;
+}
+
+.item-area .item-options input::placeholder {
+  color: #d1ab64;
+  font-size: inherit;
+}
+
+.item-area .item-options input:focus {
+  border: 2px solid #886320;
+}
+
+.item-area .item-options .item-options-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 13vh;
+  margin-top: 10px;
+}
+
+.item-area .item-options .item-options-form .item-options-cat {
+  margin: 0 20px;
+}
+
+.item-area .item-options .item-options-form .item-options-cat div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.item-area .item-options .item-options-form .item-options-cat div .item-filter {
+  background-color: red;
+  border: 0;
+  cursor: pointer;
+}
+
+.item-area .item-options .item-options-form h4 {
+  font-size: 11px;
+  display: inline;
+  font-family: "BeaufortLight", sans-serif;
+}
+
+.item-area .item-options .item-options-form h3 {
+  font-family: "BeaufortMedium", sans-serif;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.item-area .item-area-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  height: 62vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 0 10px;
+}
+
+.item-area .item-area-items .item {
+  margin: 2px 2px;
+}
+
+.item-area .item-area-items .item img {
+  width: 50px;
 }
 
 .item-set-container {
@@ -234,23 +425,32 @@ button:focus {
 
 .item-bank .item-sets {
   width: 80%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: inherit;
 }
 
 .item-bank .item-sets div {
   text-align: center;
-  display: inline-block;
-  margin-right: 10px;
+  display: block;
+  margin-left: 10px;
   position: relative;
+  width: 55px;
 }
 
 .item-bank .item-sets div img {
   width: 48px;
   border-radius: 50px;
-  border: 2px solid #8cabb1;
+  border: 2px solid #886320;
+  -webkit-transition: .1s ease-in-out;
+  transition: .1s ease-in-out;
+  cursor: pointer;
 }
 
-.item-bank .item-sets div .editing {
-  border: 2px solid #C9AA71;
+.item-bank .item-sets div .editing, .item-bank .item-sets div img:hover {
+  width: 53px;
+  border: 2px solid #d1ab64;
 }
 
 .item-bank .item-sets div p {
@@ -285,8 +485,8 @@ button:focus {
   border: 3px solid #886320;
   border-radius: 5px;
   z-index: 5;
-  background-color: #000b0d;
-  color: #a29e98;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#000e11), color-stop(#07181c), color-stop(#082127), color-stop(#062a32), to(#02343e));
+  background-image: linear-gradient(to bottom, #000e11, #07181c, #082127, #062a32, #02343e);
 }
 
 .champ-select-container button.display {
@@ -308,6 +508,7 @@ button:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  border-bottom: 1px groove #886320;
 }
 
 .champ-select-container .champ-select-nav .toggled {
@@ -330,8 +531,8 @@ button:focus {
   width: inherit;
   height: inherit;
   opacity: .5;
-  -webkit-transition-duration: .5s;
-          transition-duration: .5s;
+  -webkit-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
   border: 1px solid transparent;
 }
 
@@ -342,6 +543,9 @@ button:focus {
 .champ-select-container .champ-select-nav input {
   margin-left: auto;
   margin-right: 50px;
+  height: 25px;
+  margin-top: 3px;
+  color: #d1ab64;
 }
 
 .champ-select-container .champ-select-nav .fighter {
@@ -388,13 +592,19 @@ button:focus {
   -ms-grid-rows: auto;
       grid-template-rows: auto;
   overflow-y: scroll;
-  height: 328px;
+  max-height: 323px;
   margin-right: 5px;
+  margin-top: 5px;
   margin-bottom: 5px;
+  font-family: "BeaufortMedium", sans-serif;
 }
 
 .champ-select-container .champ-select div:hover {
-  color: #C9AA71;
+  color: #dbae5a;
+}
+
+.champ-select-container .champ-select div:hover img {
+  border: 2px solid #dbae5a;
 }
 
 .champ-select-container .champ-select div {
@@ -407,18 +617,26 @@ button:focus {
   margin: 10px 10px;
   -webkit-transition-duration: .5s;
           transition-duration: .5s;
+  color: #a99f8c;
+  -webkit-transition-timing-function: ease-in-out;
+          transition-timing-function: ease-in-out;
 }
 
 .champ-select-container .champ-select div img {
   border-radius: 50px;
-  width: 25px;
+  width: 35px;
   cursor: pointer;
+  border: 2px solid transparent;
+  -webkit-transition-timing-function: inherit;
+          transition-timing-function: inherit;
+  -webkit-transition-duration: inherit;
+          transition-duration: inherit;
 }
 
 .champ-select-container .champ-select div p {
   display: inline;
   margin-left: 5px;
-  font-size: 12px;
+  font-size: 13px;
   vertical-align: middle;
   cursor: pointer;
 }

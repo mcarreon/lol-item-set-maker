@@ -4,8 +4,6 @@
 
 .invisible { display: none!important }
 
-
-
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -18,6 +16,8 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: darken(color(secondary), 10%);
 }
+
+
 
 //logobar.js START
 .logo-bar {
@@ -68,7 +68,103 @@
 }
 // item.js END
 
+// itemArea START
 
+.item-area {
+  color: color(secondary);
+
+  .item-options {
+    
+    h1 {
+      font-size: 25px;
+      margin-left: 10px;
+      margin-top: 15px;
+      font-family: font(heavy), sans-serif;
+    }
+
+    input[type="text"] {
+      width: 91%;
+      height: 25px;
+      margin: 10px 10px 5px;
+      
+    }
+
+    input::placeholder {
+      
+      color: color(secondary);
+      font-size: inherit;
+    }
+
+    input:focus {
+      border: 2px solid color(secondary-dark);
+    }
+    
+    
+    .item-options-form {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      height: 13vh;
+      margin-top: 10px;
+  
+      .item-options-cat {
+        margin: 0 20px;
+  
+        div {
+          display: flex;
+          align-items: center;
+          position: relative;
+          
+          input {
+  
+          }
+          
+          .item-filter {
+            background-color: red;
+            border: 0;
+            cursor: pointer;
+          }
+        }
+      }
+  
+      
+  
+      h4 {
+        font-size: 11px;
+        display: inline;
+        font-family: font(light), sans-serif;
+      }
+  
+      h3 {
+        font-family: font(medium), sans-serif;
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  
+
+  .item-area-items {
+    display: flex;
+    flex-wrap: wrap;
+    height: 62vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 0 10px;
+    .item {
+      
+      img {
+        width: 50px;
+      }
+      
+      margin: 2px 2px;
+    }
+  }
+}
+
+
+// itemArea END 
 
 // itemSet.js START
 .item-set-container {
@@ -151,21 +247,28 @@
   
   .item-sets {
     width: 80%;
+    align-items: center;
+    display: inherit;
+
 
     div {
       text-align: center;
-      display: inline-block;
-      margin-right: 10px;
-      
+      display: block;
+      margin-left: 10px;
       position: relative;
+      width: 55px;
+      
 
       img {
         width: 48px;
         border-radius: 50px;
-        border: 2px solid rgb(140, 171, 177);
+        border: 2px solid color(secondary-dark);
+        transition: .1s ease-in-out;
+        cursor: pointer;
       }
 
-      .editing {
+      .editing, img:hover {
+        width: 53px;
         border: 2px solid color(secondary);
       }
       p {
@@ -209,10 +312,8 @@
   border: 3px solid color(secondary-dark);
   border-radius: 5px;
   z-index: 5;
-  background-color: darken(color(primary), 10%);
-  color: desaturate(color(secondary), 40%);
+  background-image: linear-gradient(to bottom, #000e11, #07181c, #082127, #062a32, #02343e);
   
-
 
   button.display {
     position: absolute;
@@ -224,13 +325,15 @@
     border-right: none;
     background-color: red;
   }
+  
 
   .champ-select-nav {
     height: 70px;
     display: flex;
     align-items: center;
+    border-bottom: 1px groove color(secondary-dark);
     
-    
+
     .toggled {
       opacity: 1;
       border: 1px solid color(secondary-dark);
@@ -252,7 +355,7 @@
       width: inherit;
       height: inherit;
       opacity: .5;
-      transition-duration: .5s;
+      transition: .5s ease-in-out;
       border: 1px solid transparent;
     }
 
@@ -263,7 +366,9 @@
     input {
       margin-left: auto;
       margin-right: 50px;
-      
+      height: 25px;
+      margin-top: 3px;
+      color: color(secondary);
     }
   
     .fighter {
@@ -304,12 +409,17 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
     overflow-y: scroll;
-    max-height: 328px;
+    max-height: 323px;
     margin-right: 5px;
+    margin-top: 5px;
     margin-bottom: 5px;
+    font-family: font(medium), sans-serif;
 
     div:hover {
-      color: color(secondary);
+      color: saturate(color(secondary), 10%);
+    }
+    div:hover img {
+      border: 2px solid saturate(color(secondary), 10%);
     }
 
     div {
@@ -317,18 +427,22 @@
       align-items: center;
       margin: 10px 10px;
       transition-duration: .5s;
-      
+      color: desaturate(color(secondary), 40%);
+      transition-timing-function: ease-in-out;
 
       img {
         border-radius: 50px;
-        width: 25px;
+        width: 35px;
         cursor: pointer;
+        border: 2px solid transparent;
+        transition-timing-function: inherit;
+        transition-duration: inherit;
       }
 
       p {
         display: inline;
         margin-left: 5px;
-        font-size: 12px;
+        font-size: 13px;
         vertical-align: middle;
         cursor: pointer;
       }

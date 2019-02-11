@@ -7,17 +7,20 @@ var item = require('../../assets/data/item.json');
 //console.log(champions.data);
 
 const champs = Object.keys(champions.data).map((key) => {
-  return { id: champions.data[key].id, name: champions.data[key].name,  tags: champions.data[key].tags}
+  return { id: champions.data[key].id.toLowerCase(), name: champions.data[key].name, src: champions.data[key].id,  tags: champions.data[key].tags}
 });
 
 //console.log(champs);
 
 const championNames = Object.keys(champions.data);
+
 const items = Object.assign({}, ...Object.keys(item.data).map((key) => {
   return {[Number(key)]: item.data[key]}
-})); 
+}));
+
+console.log(items);
 const itemsKeyArray = Object.keys(item.data).map((key) => {
-  return [Number(key), item.data[key]]; 
+  return [Number(key), JSON.parse(JSON.stringify(item.data[key]))]; 
 });
 
 

@@ -9,8 +9,8 @@ export class ChampSelect extends Component {
     mage: false,
     assassin: false,
     support: false,
-    marksman: false
-    
+    marksman: false,
+    search: ""
   }
 
 
@@ -64,27 +64,43 @@ export class ChampSelect extends Component {
 
   }
 
+  // applies filter terms to search
   filterSelect = filter => {
-    // formats filter for comparison
-    const filterUpper = filter.map(e => {
-      let word = e.split("");
-      word[0] = word[0].toUpperCase();
-      return word.join("");
+    const filterUpper = filter.map(tag => {
+      let upper = tag.split('');
+      upper[0] = upper[0].toUpperCase();
+      const corrected = upper.join(''); 
+      return corrected
     })
-    
     // filters champ prop with filter and returns filtered champ list
-    return this.props.champs.filter(function (e){
+    const tagFiltered = this.props.champs.filter(function (e){
       return filterUpper.every(el => {
         return (e.tags.indexOf(el) >= 0)
       }) 
-    })
+    });
+
+    let searchFiltered = tagFiltered;
+
+    if (this.state.search !== "") {
+      searchFiltered = tagFiltered.filter(e => {
+        return e.id.includes(this.state.search);
+      })
+    }
+
+    return searchFiltered;
   }
 
+  // returns tag options
   getOptions = () => {
     return Object.keys(this.state)
     .filter( key => typeof this.state[key] === typeof true && this.state[key] === true);
   }
   
+  // links state.search to input
+  handleSearch = (e) => {
+    const { name, value } = e.target;
+    this.setState({[name]: value.toLowerCase()})
+  }
   
   render() {
 
@@ -109,22 +125,22 @@ export class ChampSelect extends Component {
             <button type="button" onClick={(e) => this.toggleSelected(e)} ><i className={`assassin ${assassin ? " toggled" : ""}`} data-name="assassin"></i></button>
             <button type="button" onClick={(e) => this.toggleSelected(e)} ><i className={`support ${support ? " toggled" : ""}`} data-name="support"></i></button>
             <button type="button" onClick={(e) => this.toggleSelected(e)} ><i className={`marksman ${marksman ? " toggled" : ""}`} data-name="marksman"></i></button>
-            <input></input>
+            <input type="text" placeholder="Search" size="25" onChange={this.handleSearch} value={this.state.search} name="search"></input>
           </div>
           
           <div className="champ-select">
           {
             filteredChamps.map((champ, i) => {
               
-              let imgSrc = `http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/${champ.id}.png`
+              let imgSrc = `http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/${champ.src}.png`
               
               return (
-                <div data-name={champ.name} key={i} onClick={() => this.handleOnClick(champ.id)}>
+                <div data-name={champ.name} key={i} onClick={() => this.handleOnClick(champ.src)}>
                   <img src={imgSrc} alt={`mini-${champ.name} image`}/>
                   <p>{champ.id === "JarvanIV" ? "Jarvan IV" : champ.name.split(/(?=[A-Z])/).join(" ")}</p>
                 </div>
               )
-            })
+            }) 
           }
           </div>
         </div>
