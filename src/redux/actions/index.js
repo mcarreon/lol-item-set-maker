@@ -1,4 +1,4 @@
-import { ADD_ITEM_BLOCK, ADD_ITEM_TO_BLOCK, ADD_ITEM_SET, DELETE_ITEM_FROM_BLOCK, SAVE_ITEM_SET, SWITCH_ITEM_SET, CLEAR_ITEM_SETS, CLEAR_BLOCKS_FROM_SET, DELETE_BLOCK_FROM_SET } from "../constants/action-types";
+import { ADD_ITEM_BLOCK, ADD_ITEM_TO_BLOCK, ADD_ITEM_SET, DELETE_ITEM_FROM_BLOCK, SAVE_ITEM_SET, SWITCH_ITEM_SET, CLEAR_ITEM_SETS, CLEAR_BLOCKS_FROM_SET, DELETE_BLOCK_FROM_SET, SAVE_SET_TITLE, SAVE_BLOCK_TITLE } from "../constants/action-types";
 
 
 export function addItemBlock (payload, setID) {
@@ -53,4 +53,16 @@ export function clearBlocks () {
   return {
     type: CLEAR_BLOCKS_FROM_SET
   }
-}
+};
+
+export function saveSetTitle (setTitle) {
+  return {
+    type: SAVE_SET_TITLE, setTitle
+  }
+};
+
+export function saveBlockTitle (blockTitle) {
+  return {
+    type: SAVE_BLOCK_TITLE, blockTitle
+  }
+};

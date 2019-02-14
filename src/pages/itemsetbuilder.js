@@ -91,10 +91,7 @@ class ConnectedItemsetbuilder extends Component {
         <div className="set-area">
           { 
             curItemSet !== null ? <ItemSet
-            setID={curItemSet.setID}
             key={curItemSet.setID}
-            title={curItemSet.title}
-            blocks={curItemSet.blocks}
             /> : <div></div>
           }
         </div>

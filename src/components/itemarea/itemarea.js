@@ -131,7 +131,6 @@ class ConnectedItemArea extends Component {
   }
 
   handleSearch = e => {
-    
     this.setState({search: e.target.value});
   }
 

@@ -21,7 +21,9 @@ function mapDispatchToProps(dispatch) {
 class ConnectedItemSet extends Component {
   
 
-  
+  state = {
+    title: this.props.curItemSet.title,
+  }
 
   //needs to know champ
   //needs to know map
@@ -39,36 +41,41 @@ class ConnectedItemSet extends Component {
   deleteBlockFromSet = (blockID) => {
     this.props.deleteBlockFromSet(blockID);
   }
+
+  handleTitleChange = (e) => {
+    this.setState({title: e.target.value});
+  }
   
   render() {
 
-    const { setID, itemListObj, title, blocks, saveItemSet, clearBlocks } = this.props;
+    const { itemListObj, blocks, saveItemSet, clearBlocks, curItemSet } = this.props;
     
 
 
     return (
-      <div data-set-id={setID} className={`item-set-container`}>
+      <div data-set-id={curItemSet.setID} className={`item-set-container`}>
         <div className="item-set-nav">
-          <h2>{title}</h2>
+          <input type="text" value={this.state.title} placeholder={this.state.title} onChange={this.handleTitleChange}></input>
+          <h2>{curItemSet.title}</h2>
           <button type="submit" onClick={() => clearBlocks()}>Clear Blocks</button>
           <button type="button" className="save" onClick={() => saveItemSet()}>x</button>
         </div>
         
         {
-          blocks.map((block, i) => {
+          curItemSet.blocks.map((block, i) => {
             
             return <ItemBlock 
             key={i}
             type={block["type"]}
             blockID={i}
             itemListObj={itemListObj}
-            blocks={blocks}
-            setID={setID}
+            blocks={curItemSet.blocks}
+            setID={curItemSet.setID}
             deleteBlock={this.deleteBlockFromSet}
             />
           })
         }
-        <button type="submit" onClick={() => this.addItemBlock(setID)}>Add a new block</button>
+        <button type="submit" onClick={() => this.addItemBlock(curItemSet.setID)}>Add a new block</button>
       </div>
     )
   }
